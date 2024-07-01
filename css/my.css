@@ -5423,6 +5423,25 @@ aside .fliph .system-check {
 .open-w100 .mw-15{  
   max-width: 15%;
 }
+#map .accordion-body {
+  padding-bottom: 0px;
+}
+#map .accordion-body>div:nth-child(2n+1):last-child {
+  border: 0px !important;
+}
+#map .accordion-body>div:nth-child(2n+1):nth-last-child(2),
+#map .accordion-body>div:nth-child(2n):last-child {
+  border: 0px !important;
+}
+.buttons-sel>.buttons-sel {
+  max-width: calc(100% - 200px);
+}
+.open.w-100:not(.open-w100) ~* form.buttons-sel {  max-width: 100%;
+}
+ form.buttons-sel {
+  max-width: calc(100% - 120px);
+  margin-right: auto;
+}
 @media (min-width: 990px) and (max-width: 1170px) {
   #widget-telSurvey {
     margin-top: 0.5rem !important;
@@ -5821,6 +5840,10 @@ aside .fliph .system-check {
   }
 }
 @media (max-width: 767.5px) {
+  body.myjobs div#infoJobMenu, body.openjobs div#infoJobMenu, body.unfin-job div#infoJobMenu {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
   .open-w100 .mw-15{
     max-width: unset;
   }
@@ -7649,7 +7672,7 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
   body.myjobs #map form:not(.hide-add-info):not(.hide-info-ins) div.action,
   body.openjobs #map form:not(.hide-add-info):not(.hide-info-ins) div.action {
     position: absolute !important;
-    bottom: -70px;
+    bottom: -65px;
     margin-bottom: 0px !important;
     padding-bottom: 10px !important;
     padding-right: 0px !important;
@@ -7658,6 +7681,12 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
     z-index: 1;
     min-width: 160px !important;
   }
+  #map button.d-flex.flex-column.align-items-center.accept.pick-apply-date-modal.link-primary {
+    height: auto !important;
+    min-width: 100px !important;
+    line-height: 1 !important;
+    margin-top: -56px !important;
+}
   #map a.preview {
     margin-right: 2px !important;
   }
