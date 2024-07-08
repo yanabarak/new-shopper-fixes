@@ -5423,6 +5423,10 @@ aside .fliph .system-check {
 .open-w100 .mw-15{  
   max-width: 15%;
 }
+.open-w100 .mw-10 {
+  max-width: 10%;
+}
+
 #map .accordion-body {
   padding-bottom: 0px;
 }
@@ -5757,6 +5761,22 @@ aside .fliph .system-check {
   }
 }
 @media (min-width: 767.6px) {
+  .visible-block.desc,
+  .visible-block.desc * {
+    transition: all 0ms linear !important;
+  }
+  #map *:not(.open-w100) .visible-block.desc {
+    max-width: calc((100% - 17% - 80px) / 2);
+  }
+  #map .open .visible-block.desc {
+    opacity: 1;
+    display: block !important;
+    width: 14vw;
+    height: auto;
+    transition: all 1s linear 1s;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   .openjobs .accordion-button::after {
     position:absolute;
     right: 0px;
@@ -5844,6 +5864,7 @@ aside .fliph .system-check {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
+.open-w100 .mw-10,
   .open-w100 .mw-15{
     max-width: unset;
   }
@@ -7803,3 +7824,8 @@ button.filter-btn::after {
   max-height: 100%;
   background-size: contain;
 }
+#map .card-list-job.bg-white .fs-14 {
+  font-size: 14px !important;
+  line-height: 1.5;
+}
+
