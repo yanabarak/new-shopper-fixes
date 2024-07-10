@@ -2280,7 +2280,7 @@ select#lang + button {
 #map textarea.form-control {
   min-height: 100%;
   max-height: 300px;
-  min-width: 240px;
+  /* min-width: 240px; */
   max-width: 100% !important;
   resize: both;
 }
@@ -2418,6 +2418,24 @@ div#infoJob .block {
   width: fit-content;
   max-width: 200px;
 }
+.unfin-job div#infoJobMenu button.filter-btn{
+  grid-column-start: 4;
+  grid-row-start: 1;
+}
+
+.unfin-job .col-auto.ms-auto.lang-row {
+  grid-column-start: 5;
+}
+.unfin-job #content .block{
+  min-width: 150px;
+}
+body.unfin-job div#infoJobMenu{
+  display: grid;
+  grid-template-columns: 1fr auto auto 1fr 1fr;
+}
+body.unfin-job h1{
+  width: 100% !important;
+}
 div#infoJob .block:nth-child(3) {
   margin-left: 0px !important;
 }
@@ -2451,8 +2469,7 @@ div.mini-menu#infoJobMenu {
   grid-template-columns: repeat(5, 1fr);
 }
 body.myjobs div#infoJobMenu .col-auto.ms-auto.lang-row,
-body.openjobs div#infoJobMenu .col-auto.ms-auto.lang-row,
-body.unfin-job div#infoJobMenu .col-auto.ms-auto.lang-row {
+body.openjobs div#infoJobMenu .col-auto.ms-auto.lang-row {
   grid-column-start: 4;
   padding-right: 0px;
 }
@@ -3921,7 +3938,6 @@ tr:not(.treegrid-expanded):not(.treegrid-collapsed) .treegrid-expander::before {
 
 #files-library-new {
   margin: 0px !important;
-  margin-top: 50px !important;
 }
 #files-library-new .bootstrap-table.bootstrap5 {
   padding: 0px;
@@ -4784,6 +4800,7 @@ body.locations .content-wrapper > div > .bg-white {
 }
 .survey_hist #rec-wrap {
   box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.1);
+  margin: 0px !important;
 }
 .survey_hist .info-record > .tel-elem-info {
   margin-left: 32px !important;
@@ -5446,6 +5463,27 @@ aside .fliph .system-check {
   max-width: calc(100% - 120px);
   margin-right: auto;
 }
+body:not(.myjobs):not(.openjobs):not(.unfin-job) div#infoJobMenu.mini-menu{
+  position: unset !important;
+  padding-bottom: 20px;
+}
+body:not(.myjobs):not(.openjobs) .col-auto.ms-auto.lang-row {
+  padding-inline-end: 0px;
+}
+div#infoJobMenu.mini-menu h1.w-50 {
+  width: unset !important;
+}
+.survey_hist button.filter-btn{
+  margin-inline-end: 0px !important;
+}
+.col-auto.ms-auto.lang-row:last-child:nth-child(3) {
+  margin-inline-start: auto !important;
+  margin-inline-end: 0px !important;
+}
+.filter-btn:nth-last-child(2):nth-child(2) {
+  margin-inline-start: 20px !important;
+  margin-inline-end: 0px !important;
+}
 @media (min-width: 990px) and (max-width: 1170px) {
   #widget-telSurvey {
     margin-top: 0.5rem !important;
@@ -5514,11 +5552,12 @@ aside .fliph .system-check {
   }
   div.mini-menu#infoJobMenu {
     grid-template-columns: repeat(2, 1fr) !important;
-    padding: 19px 36px 12px !important;
+    padding: 19px 0px 12px !important;
   }
   div#infoJobMenu.mini-menu button.filter-btn,
   body.unfin-job div#infoJobMenu button.filter-btn {
     grid-column-start: 2;
+    margin-right: 0px !important;
   }
   div.mini-menu#infoJobMenu .block:nth-child(3),
   body.unfin-job div#infoJobMenu .block:nth-child(3) {
@@ -5860,11 +5899,25 @@ aside .fliph .system-check {
   }
 }
 @media (max-width: 767.5px) {
-  body.myjobs div#infoJobMenu, body.openjobs div#infoJobMenu, body.unfin-job div#infoJobMenu {
+  body.myjobs div#infoJobMenu, body.openjobs div#infoJobMenu {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-}
-.open-w100 .mw-10,
+  }
+  #map .open .visible-block.desc,
+  #map .accordion-button>* {
+    display: none !important;
+  }
+  #pick-apply-date-modal .modal-body>div{
+    flex-direction: column;
+    padding: 0px
+  }
+  #infoJobMenu>h1:first-child:nth-last-child(2) {
+    width: 100% !important;
+  }
+  .unfin-job .filter-btn {
+    margin-right: 0px !important;
+  }
+  .open-w100 .mw-10,
   .open-w100 .mw-15{
     max-width: unset;
   }
@@ -6216,7 +6269,8 @@ aside .fliph .system-check {
     margin-top: 0px !important;
   }
   .openjobs .buttons-sel {
-    width: 100% !important;
+    width: 100% !important;    
+    max-width: unset;
   }
   .openjobs .show-pack .col-auto:first-of-type {
     max-width: 100% !important;
@@ -6882,9 +6936,26 @@ aside .fliph .system-check {
   /*.survey_hist .header-wrapper {
   margin-top: 0px !important;
 }*/
-  .survey_hist .header-wrapper .lang-row:nth-child(3) {
-    position: absolute;
-    right: 0px !important;
+  .survey_hist .color-lgrey {
+    word-wrap: anywhere;
+  }
+  #files-library-new table > thead > tr > th:first-child, #files-library-new table > tbody > tr > td:first-child{
+    padding-inline-start: 50px !important;
+  }
+  #files-library-new table > tbody > tr.children-1 > td:first-child {
+    padding-left: 70px !important;
+  }
+  #files-library-new table > tbody > tr.children-2 > td:first-child {
+    padding-left:80px !important;
+  }
+  #files-library-new table > tbody > tr.children-3 > td:first-child {
+    padding-left: 90px !important;
+  }
+  #files-library-new table > tbody > tr.children-4 > td:first-child {
+    padding-left: 100px !important;
+  }
+  #files-library-new table > tbody > tr.children-5 > td:first-child {
+    padding-left: 110px !important;
   }
   .survey_hist #content .header-wrapper .row.m-0.p-0.col-12.col-lg-7 .block {
     margin-right: 5px !important;
@@ -7699,8 +7770,12 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
     padding-right: 0px !important;
     left: calc(50% + 0px);
     transform: translateX(-50%);
-    z-index: 1;
+    z-index: 4;
     min-width: 160px !important;
+  }
+
+  body.myjobs #map form:not(.hide-add-info):not(.hide-info-ins) div.action{
+    bottom: -55px;
   }
   #map button.d-flex.flex-column.align-items-center.accept.pick-apply-date-modal.link-primary {
     height: auto !important;
@@ -7739,6 +7814,7 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
   body.myjobs div#infoJobMenu .col-auto.ms-auto.lang-row,
   body.openjobs div#infoJobMenu .col-auto.ms-auto.lang-row,
   body.unfin-job div#infoJobMenu .col-auto.ms-auto.lang-row,
+  body.survey_hist div#infoJobMenu .col-auto.ms-auto.lang-row,
   #infoJobMenu > h1 + .lang-row,
   #infoJobMenu > h1 + button + .lang-row {
     top: 10px !important;
