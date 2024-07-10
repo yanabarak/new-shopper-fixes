@@ -5477,12 +5477,13 @@ div#infoJobMenu.mini-menu h1.w-50 {
   margin-inline-end: 0px !important;
 }
 .col-auto.ms-auto.lang-row:last-child:nth-child(3) {
-  margin-inline-start: auto !important;
+  margin-inline-start: 20px !important;
   margin-inline-end: 0px !important;
 }
 .filter-btn:nth-last-child(2):nth-child(2) {
-  margin-inline-start: 20px !important;
-  margin-inline-end: 0px !important;
+  margin-inline-end: 0px !important;  
+  margin-inline-start: auto !important;
+  order: 0 !important;
 }
 @media (min-width: 990px) and (max-width: 1170px) {
   #widget-telSurvey {
