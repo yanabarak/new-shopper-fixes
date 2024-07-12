@@ -72,7 +72,7 @@ header {
   background: white;
   left: 0px;
   right: 0px;
-  z-index: 1080;
+  z-index: 100;
 }
 .logo img,
 img.logo {
@@ -1292,6 +1292,7 @@ body.openjobs
 body.openjobs #map div.action[data-info*=" "] > a:first-child:last-child,
 body.openjobs #map div.action a:first-child:last-child {
   margin: 0 auto !important;
+  min-height: 40px;
 }
 .col-auto.pb-3.hidd.d-none.desc-block:nth-child(3) {
   margin-left: 150px;
@@ -6556,7 +6557,7 @@ div#infoJobMenu.mini-menu h1.w-50 {
   }
   div#infoJobMenu.mini-menu,
   #maptoggler.show {
-    z-index: 1 !important;
+    z-index: 101 !important;
   }
   #maptoggler.show {
     top: auto;
@@ -7819,7 +7820,7 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
   #infoJobMenu > h1 + .lang-row,
   #infoJobMenu > h1 + button + .lang-row {
     top: 10px !important;
-    z-index: 1081;
+    z-index: 100;
     right: 50px;
     position: fixed;
     padding: 0px !important;
