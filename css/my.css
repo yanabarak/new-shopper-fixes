@@ -2316,9 +2316,11 @@ body.openjobs [type="button"].btn.btn-primary {
   display: block;
   transition: all 0.3s linear;
 }
-body.openjobs #map .listWrap,
 body.myjobs #map .listWrap {
-  padding-bottom: 120px !important;
+  padding-bottom: 150px !important;
+}
+body.openjobs #map .listWrap{
+  padding-bottom: 180px !important;
 }
 div#map.emptyList,
 div#map.emptyList .listWrap {
@@ -6351,11 +6353,11 @@ div#infoJobMenu.mini-menu h1.w-50 {
     font-size: 19px;
     margin-left: 5px;
   }
-  .form-applied {
-    position: unset !important;
-    background-color: transparent !important;
+  .form-applied {    
     border: 0px solid !important;
     width: 100% !important;
+    left: 0px;
+    padding: 20px !important;
   }
   #map .listWrap {
     height: fit-content;
@@ -6629,7 +6631,7 @@ div#infoJobMenu.mini-menu h1.w-50 {
   }
   body.myjobs #content #map.list .form-applied,
   body.openjobs #content #map.list .form-applied {
-    padding-bottom: 50px !important;
+    padding-bottom: 10px !important;
   }
   .card-list-job.show-pack a[type="button"] {
     width: auto !important;
