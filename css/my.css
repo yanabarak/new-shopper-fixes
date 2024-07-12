@@ -6561,9 +6561,13 @@ div#infoJobMenu.mini-menu h1.w-50 {
   #maptoggler.show {
     z-index: 101 !important;
   }
+  .myjobs .card-list-job.form-applied .show-main > div:has(input:not(:checked)) ~ *,
+  .openjobs .card-list-job.form-applied .show-main>div:has(.form-check-input[type="checkbox"]:not(:checked)) + form {
+    display:none !important
+    }
   #maptoggler.show {
     top: auto;
-    bottom: calc(2 * var(--vh));
+    bottom: calc(8 * var(--vh));
     right: 50% !important;
     transform: translateX(50%) !important;
     left: auto !important;
