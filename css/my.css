@@ -588,6 +588,16 @@ button:not(.navbar-toggler):not(.accordion-button):not(
   background-color: var(--main-brand-color);
   color: #fff;
 }
+button:not(.navbar-toggler):not(.accordion-button):not(
+    [aria-label="Close"]
+  ):hover,.available-jobs,
+[type="button"].btn:not(.navbar-toggler):not(.accordion-button):not(
+    [aria-label="Close"]
+  ):hover {
+  box-shadow: 0px 0px 0px 50px var(--second-brand-color) inset;
+  background-color: var(--second-brand-color);
+  /* color: #fff; */
+}
 .modal form .btn[type="submit"] {
   /*   width: 176px;*/
   height: 48px;
@@ -978,12 +988,6 @@ button#navbarSideCollapseClose {
   left: calc(50% + 140px);
 }
 
-#map .listWrap:has(.show-job-pack.open) button#navbarSideCollapse.button-open {
-  top: 140px;
-}
-#map .listWrap:has(.show-job-pack.open) button#navbarSideCollapseClose {
-  top: 140px;
-}
 aside:has(.fliph) + #content #navbarSideCollapseClose {
   left: calc(50% + 40px);
 }
@@ -1120,6 +1124,25 @@ button.accept,
   transition: all 0.25s linear;
   font-weight: bold;
   text-align: center;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button.available-jobs,
+ [type="button"].available-jobs{
+    border-radius: 46px;
+    box-shadow: 0px 0px 0px 3px var(--second-brand-color) inset;
+    border: 0px solid;
+    background-color: #fff;
+    color: var(--second-brand-color);  
+    padding: 4px 20px !important;
+    font-size: 14px;
+    transition: all 0.25s linear;
+    font-weight: bold;
+    text-align: center;
+    height: 43px;
+    justify-content: center;
 }
 .card-list-job.bg-white .accept {
   min-width: 127px;
@@ -1127,11 +1150,7 @@ button.accept,
 .col.bg-white.block.border.rounded-3.row.m-0.mb-2 {
   max-width: 50%;
 }
-button.start-job,
-[type="button"].start-job {
-  box-shadow: 0px 0px 0px 3px var(--second-brand-color) inset;
-  color: var(--second-brand-color);
-}
+
 button.accept.disabled,
 [type="button"].accept.disabled {
   min-height: 40.4px;
@@ -2281,7 +2300,6 @@ select#lang + button {
 #map textarea.form-control {
   min-height: 100%;
   max-height: 300px;
-  /* min-width: 240px; */
   max-width: 100% !important;
   resize: both;
 }
@@ -2316,6 +2334,7 @@ body.openjobs [type="button"].btn.btn-primary {
   display: block;
   transition: all 0.3s linear;
 }
+body.openjobs #map .listWrap,
 body.myjobs #map .listWrap {
   padding-bottom: 150px !important;
 }
@@ -5446,7 +5465,6 @@ aside .fliph .system-check {
 .open-w100 .mw-10 {
   max-width: 10%;
 }
-
 #map .accordion-body {
   padding-bottom: 0px;
 }
@@ -5466,7 +5484,7 @@ aside .fliph .system-check {
   max-width: calc(100% - 120px);
   margin-right: auto;
 }
-body:not(.myjobs):not(.openjobs):not(.unfin-job) div#infoJobMenu.mini-menu{
+body:not(.myjobs):not(.openjobs) div#infoJobMenu.mini-menu{
   position: unset !important;
   padding-bottom: 20px;
 }
@@ -5484,8 +5502,8 @@ div#infoJobMenu.mini-menu h1.w-50 {
   margin-inline-end: 0px !important;
 }
 .filter-btn:nth-last-child(2):nth-child(2) {
-  margin-inline-end: 0px !important;  
   margin-inline-start: auto !important;
+  margin-inline-end: 0px !important;
   order: 0 !important;
 }
 @media (min-width: 990px) and (max-width: 1170px) {
@@ -5813,7 +5831,7 @@ div#infoJobMenu.mini-menu h1.w-50 {
   }
   #map .open .visible-block.desc {
     opacity: 1;
-    display: block !important;
+    /* display: block !important; */
     width: 14vw;
     height: auto;
     transition: all 1s linear 1s;
@@ -5827,6 +5845,16 @@ div#infoJobMenu.mini-menu h1.w-50 {
     background-position: center;
   }
   .openjobs .accordion-button{
+    position: relative;
+    padding-right: 72px !important;
+  }
+  .myjobs .accordion-button::after {
+    position:absolute;
+    right: 0px;
+    width: 52px;
+    background-position: center;
+  }
+  .myjobs .accordion-button{
     position: relative;
     padding-right: 72px !important;
   }
@@ -5906,8 +5934,8 @@ div#infoJobMenu.mini-menu h1.w-50 {
   body.myjobs div#infoJobMenu, body.openjobs div#infoJobMenu {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-  }
-  #map .open .visible-block.desc,
+}
+#map .open .visible-block.desc,
   #map .accordion-button>* {
     display: none !important;
   }
@@ -5924,6 +5952,14 @@ div#infoJobMenu.mini-menu h1.w-50 {
   .open-w100 .mw-10,
   .open-w100 .mw-15{
     max-width: unset;
+  }
+  .nowrap.nowrap-small{
+    white-space: nowrap !important;
+    width: calc(100vw - 120px);
+  }
+  .open-w100 .mw-15{
+    width: 100%;
+    box-sizing: border-box;
   }
   .col.bg-white.block.border.rounded-3.row.m-0.mb-2 {
     max-width: 100%;
@@ -6273,7 +6309,7 @@ div#infoJobMenu.mini-menu h1.w-50 {
     margin-top: 0px !important;
   }
   .openjobs .buttons-sel {
-    width: 100% !important;    
+    width: 100% !important;
     max-width: unset;
   }
   .openjobs .show-pack .col-auto:first-of-type {
@@ -6353,7 +6389,7 @@ div#infoJobMenu.mini-menu h1.w-50 {
     font-size: 19px;
     margin-left: 5px;
   }
-  .form-applied {    
+  .form-applied {
     border: 0px solid !important;
     width: 100% !important;
     left: 0px;
@@ -6944,27 +6980,27 @@ div#infoJobMenu.mini-menu h1.w-50 {
   /*.survey_hist .header-wrapper {
   margin-top: 0px !important;
 }*/
-  .survey_hist .color-lgrey {
-    word-wrap: anywhere;
-  }
-  #files-library-new table > thead > tr > th:first-child, #files-library-new table > tbody > tr > td:first-child{
-    padding-inline-start: 50px !important;
-  }
-  #files-library-new table > tbody > tr.children-1 > td:first-child {
-    padding-left: 70px !important;
-  }
-  #files-library-new table > tbody > tr.children-2 > td:first-child {
-    padding-left:80px !important;
-  }
-  #files-library-new table > tbody > tr.children-3 > td:first-child {
-    padding-left: 90px !important;
-  }
-  #files-library-new table > tbody > tr.children-4 > td:first-child {
-    padding-left: 100px !important;
-  }
-  #files-library-new table > tbody > tr.children-5 > td:first-child {
-    padding-left: 110px !important;
-  }
+.survey_hist .color-lgrey {
+  word-wrap: anywhere;
+}
+#files-library-new table > thead > tr > th:first-child, #files-library-new table > tbody > tr > td:first-child{
+  padding-inline-start: 50px !important;
+}
+#files-library-new table > tbody > tr.children-1 > td:first-child {
+  padding-left: 70px !important;
+}
+#files-library-new table > tbody > tr.children-2 > td:first-child {
+  padding-left:80px !important;
+}
+#files-library-new table > tbody > tr.children-3 > td:first-child {
+  padding-left: 90px !important;
+}
+#files-library-new table > tbody > tr.children-4 > td:first-child {
+  padding-left: 100px !important;
+}
+#files-library-new table > tbody > tr.children-5 > td:first-child {
+  padding-left: 110px !important;
+}
   .survey_hist #content .header-wrapper .row.m-0.p-0.col-12.col-lg-7 .block {
     margin-right: 5px !important;
     margin-left: 0px !important;
@@ -7781,7 +7817,6 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
     z-index: 4;
     min-width: 160px !important;
   }
-
   body.myjobs #map form:not(.hide-add-info):not(.hide-info-ins) div.action{
     bottom: -55px;
   }
@@ -7908,8 +7943,39 @@ button.filter-btn::after {
   max-height: 100%;
   background-size: contain;
 }
-#map .card-list-job.bg-white .fs-14 {
+
+#map .card-list-job.bg-white .fs-14{
   font-size: 14px !important;
-  line-height: 1.5;
+  line-height: 1.5
 }
 
+.myjobs #navbarsListJob:not(.d-none) ~ .form-applied .apply-multiple:first-child > .remove-multiple.black-color{
+  position: unset !important;
+}
+.myjobs #navbarsListJob:not(.d-none) ~ .form-applied .apply-multiple:nth-child(2){
+  margin: 0px;
+  z-index: 1;
+}
+.myjobs #navbarsListJob:not(.d-none) ~ .form-applied .form-control {
+  display: none
+}
+.myjobs #navbarsListJob:not(.d-none) ~ .form-applied  .buttons-sel {
+  flex-direction: row-reverse;
+  margin-left: 10%;
+}
+.myjobs #navbarsListJob:not(.d-none) ~ .form-applied .show-main {
+  justify-content: start !important;
+}
+.open:not(.open-w100) ~ .form-applied .buttons-sel > .buttons-sel{
+  flex-grow: 1;
+}
+.openjobs #map .open-w100 ~ .form-applied textarea.form-control{
+  min-width: 300px !important;
+}
+@media (max-width: 767.5px) {
+  .visible-block,
+  .accordion-button .mw-15{
+    display: none !important;
+  }
+}
+ 
