@@ -2334,8 +2334,11 @@ body.openjobs [type="button"].btn.btn-primary {
   display: block;
   transition: all 0.3s linear;
 }
-body.openjobs #map .listWrap,
-body.myjobs #map .listWrap {
+body.openjobs #map .listWrap
+:has(.open),
+body.myjobs #map .listWrap
+:has(.open)
+{
   padding-bottom: 150px !important;
 }
 body.openjobs #map .listWrap{
@@ -5873,7 +5876,7 @@ div#infoJobMenu.mini-menu h1.w-50 {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    height: 80%;
+    /*! height: 80%; */
   }
   .survey_hist .header-wrapper .block {
     max-width: 200px !important;
@@ -5949,7 +5952,7 @@ div#infoJobMenu.mini-menu h1.w-50 {
   .unfin-job .filter-btn {
     margin-right: 0px !important;
   }
-  .open-w100 .mw-10,
+.open-w100 .mw-10,
   .open-w100 .mw-15{
     max-width: unset;
   }
@@ -6601,8 +6604,9 @@ div#infoJobMenu.mini-menu h1.w-50 {
   .openjobs .card-list-job.form-applied .show-main>div:has(.form-check-input[type="checkbox"]:not(:checked)) + form {
     display:none !important
     }
+  #infoJobMenu.mini-menu + .content-wrapper > div#map.emptyList + #maptoggler.show,
   #maptoggler.show {
-    top: auto;
+    top: auto !important;
     bottom: calc(8 * var(--vh));
     right: 50% !important;
     transform: translateX(50%) !important;
@@ -7805,8 +7809,15 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
     margin-bottom: 0px !important;
     padding-bottom: 10px !important;
   }
-  body.myjobs #map form:not(.hide-add-info):not(.hide-info-ins) div.action,
-  body.openjobs #map form:not(.hide-add-info):not(.hide-info-ins) div.action {
+  .col-12.col-md.d-block.d-md-none.p-0.pb-2:last-child .fs-18.nowrap.color-grey.nowrap-small {
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: wrap !important;
+  }
+  body.myjobs #map form div.action,
+  body.openjobs #map form div.action {
     position: absolute !important;
     bottom: -65px;
     margin-bottom: 0px !important;
@@ -7815,7 +7826,8 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
     left: calc(50% + 0px);
     transform: translateX(-50%);
     z-index: 4;
-    min-width: 160px !important;
+    min-width: 170px !important;
+    flex-wrap: nowrap;
   }
   body.myjobs #map form:not(.hide-add-info):not(.hide-info-ins) div.action{
     bottom: -55px;
