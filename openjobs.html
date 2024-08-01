@@ -171,8 +171,10 @@
                                 <span>Applied open jobs</span>
                             </div>
                         </div>
-                        <div class="filter-wrap col-auto mx-auto d-none d-xl-flex"><input id="searchInput"
-                                placeholder="min 3 symbols" type="text" class="form-control"></div>
+                        <div class="filter-wrap col-auto mx-auto d-none d-xl-flex flex-column"><input id="searchInput"
+                                placeholder="min 3 symbols" type="text" class="form-control">
+                            <span id="selected-info"></span>
+                        </div>
                         <div class="col-auto ms-auto lang-row">
                             <select class="form-select mb-4 selectpicker" id="lang">
                                 <option selected>English</option>
@@ -1980,33 +1982,54 @@
             $('#searchInput').on('input', function () {
                 var searchText = $(this).val().toLowerCase();
 
-                // Remove 'selected-block' class from all elements
-                $('.selected-block').removeClass('selected-block');
+                // Reset classes on all elements inside #navbarsListJob
+                $('#navbarsListJob .selected-block').removeClass('selected-block');
+                $('#navbarsListJob .visually-hidden').removeClass('visually-hidden');
+
+                const selectedInfo = document.getElementById('selected-info');
+                selectedInfo.textContent = '';
 
                 if (searchText.length >= 3) {
                     var firstMatch = null;
+                    let selected = 0;
+                    $('#navbarsListJob').children().each(function () {
+                        var textContent = $(this).text().toLowerCase().trim();
 
-                    $('body *').each(function () {
-                        if ($(this).text().toLowerCase().includes(searchText)) {
-                            var parent = $(this).closest('.bg-white');
-                            if (parent.length) {
-                                parent.addClass('selected-block');
+                        if (textContent) {
+                            if (textContent.includes(searchText)) {
+                                $(this).addClass('selected-block');
+                                selected++;
                                 if (!firstMatch) {
-                                    firstMatch = parent;
+                                    firstMatch = $(this);
                                 }
+                            } else {
+                                $(this).addClass('visually-hidden');
                             }
+                        } else {
+                            $(this).addClass('visually-hidden');
                         }
                     });
-                    var top = firstMatch.offset().top > 150 ? firstMatch.offset().top : 0
+
                     // Scroll to the first matched element if it exists
                     if (firstMatch) {
+                        var top = firstMatch.offset().top > 150 ? firstMatch.offset().top : 0;
                         $('html, body').animate({
                             scrollTop: top
                         }, 500);
                     }
+                    if (selected > 0) {
+                        selectedInfo.textContent = `${selected} records found`;
+                    } else {
+                        selectedInfo.textContent = 'no records found';
+                    }
+
+
                 }
+
             });
         });
+
+
     </script>
     <style>
         .selected-block button,
