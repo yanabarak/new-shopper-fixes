@@ -2219,6 +2219,49 @@ jQuery(document).ready(function ($) {
   });
 
   $(document).ready(function () {
+      $('#searchInput').on('input', function () {
+          var searchText = $(this).val().toLowerCase();
+          $('#navbarsListJob .selected-block').removeClass('selected-block');
+          $('#navbarsListJob .visually-hidden').removeClass('visually-hidden');
+
+          const selectedInfo = document.getElementById('selected-info');
+          selectedInfo.textContent = '';
+
+          if (searchText.length >= 3) {
+              var firstMatch = null;
+              let selected = 0;
+              $('#navbarsListJob').children().each(function () {
+                  var textContent = $(this).text().toLowerCase().trim();
+
+                  if (textContent) {
+                      if (textContent.includes(searchText)) {
+                          $(this).addClass('selected-block');
+                          selected++;
+                          if (!firstMatch) {
+                              firstMatch = $(this);
+                          }
+                      } else {
+                          $(this).addClass('visually-hidden');
+                      }
+                  } else {
+                      $(this).addClass('visually-hidden');
+                  }
+              });
+
+              if (firstMatch) {
+                  $('html, body').animate({
+                      scrollTop: 0
+                  }, 500);
+              }
+              if (selected > 0) {
+                  selectedInfo.textContent = `${selected} records found`;
+              } else {
+                  selectedInfo.textContent = 'no records found';
+              }
+          }
+
+      });
+
     $(".accordion-button a").click(function () {
       if (!$(this).prop("disabled") && !$(this).hasClass('begin-certification')) {
         window.location.href = $(this).attr("href");
