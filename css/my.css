@@ -1209,7 +1209,7 @@ body.myjobs #map .navbar-collapse.open-w100 div.action,
 body.openjobs #map .navbar-collapse.open-w100 div.action {
   justify-content: space-evenly !important;
   margin-right: 0px;
-  min-width: 220px !important;
+  min-width: 200px !important;
 }
 body.openjobs #map .navbar-collapse.open-w100 .show-pack div.action {
   padding-right: 0px !important;
@@ -2277,7 +2277,7 @@ select#lang + button {
   background-position: right 2px center;
 }
 .btn[data-id="lang"] .filter-option-inner-inner {
-  max-width: 200px !important;
+  max-width: 110px !important;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -6596,9 +6596,11 @@ div#infoJobMenu.mini-menu h1.w-50 {
     height: 100% !important;
     padding-bottom: 0px !important;
   }
-  div#infoJobMenu.mini-menu,
   #maptoggler.show {
     z-index: 101 !important;
+  }
+  div#infoJobMenu.mini-menu{
+    z-index: 102 !important;
   }
   .myjobs .card-list-job.form-applied .show-main > div:has(input:not(:checked)) ~ *,
   .openjobs .card-list-job.form-applied .show-main>div:has(.form-check-input[type="checkbox"]:not(:checked)) + form {
@@ -7786,8 +7788,11 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
 .hide-info-ins{
   position: relative;
 }
-.hide-info-ins .actions{
+/* .hide-info-ins .actions{
   margin-right: 60px !important;
+} */
+.cardnew span {
+  font-size: 12px;
 }
 #map  .hide-add-info button.accordion-button.collapsed{
   top: auto;
@@ -7828,6 +7833,9 @@ body.openjobs #map .navbar-collapse.open-w100 .hide-add-info div.action {
     z-index: 4;
     min-width: 170px !important;
     flex-wrap: nowrap;
+  }
+  body.myjobs #map form div.action{
+    bottom: -55px;
   }
   body.myjobs #map form:not(.hide-add-info):not(.hide-info-ins) div.action{
     bottom: -55px;
@@ -7984,7 +7992,20 @@ button.filter-btn::after {
 .openjobs #map .open-w100 ~ .form-applied textarea.form-control{
   min-width: 300px !important;
 }
-
+@media (max-width: 767.5px) {
+  #infoJobMenu .filter-wrap.d-flex.flex-column {    
+    grid-row-start: 3;
+    grid-column-start: 1;
+    padding: 0px;
+    margin-top: 10px;
+    grid-column-end: 3;
+    text-align: center;
+  }
+  .visible-block,
+  .accordion-button .mw-15{
+    display: none !important;
+  }
+}
 .selected-block button,
 .selected-block {
     background-color: var(--color-second-lightest) !important;
@@ -7998,16 +8019,3 @@ button.filter-btn::after {
     background-position: right 10px center;
     padding-right: 30px;
 }
-@media (max-width: 767.5px) {
-   #infoJobMenu .filter-wrap.d-flex.flex-column {
-    grid-row-start: 3;
-    grid-column-start: 2;
-    padding: 0px;
-    margin-top: 10px;
-  }
-  .visible-block,
-  .accordion-button .mw-15{
-    display: none !important;
-  }
-}
- 
