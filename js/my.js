@@ -901,7 +901,9 @@ jQuery(document).ready(function ($) {
         } else {
           $("#map").scrollTop("1");
         }
-
+        setTimeout(function () {
+          updateSelectedCount();
+        }, 500);
         $("#navbarsListJobPack").addClass("show-job-pack");
         $("#navbarsListJobPack").removeClass("visually-hidden");
 
@@ -2210,6 +2212,22 @@ jQuery(document).ready(function ($) {
     }
   }
 
+  function updateSelectedCount() {
+    const selectedInfo = document.getElementById('selected-info');
+      let jobSelectedCount = $('#navbarsListJob .selected-block').length;
+      let jobPackSelectedCount = $('#navbarsListJobPack .selected-block').length;
+
+      if ($('#navbarsListJob').hasClass('visually-hidden') || $('#navbarsListJob').hasClass('d-none')) {
+          console.log(`Number of selected blocks in JobPack: ${jobPackSelectedCount}`);
+          selectedInfo.textContent = `${jobPackSelectedCount}  record(s) found`;
+      } else if ($('#navbarsListJobPack').hasClass('visually-hidden') || $('#navbarsListJobPack').hasClass('d-none')) {
+          console.log(`Number of selected blocks in Job: ${jobSelectedCount}`);
+          selectedInfo.textContent = `${jobSelectedCount} record(s) found`;
+      } else{
+        selectedInfo.textContent = `${jobSelectedCount} record(s) found`;
+      }
+  }
+
   //initial all function on load page
   $(window).resize(function () {
     drawStuff();
@@ -2218,49 +2236,58 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  $(document).ready(function () {
-      $('#searchInput').on('input', function () {
-          var searchText = $(this).val().toLowerCase();
-          $('#navbarsListJob .selected-block').removeClass('selected-block');
-          $('#navbarsListJob .visually-hidden').removeClass('visually-hidden');
+  $(document).ready(function () {$('#searchInput').on('input', function () {
+      var searchText = $(this).val().toLowerCase();
+      $('#navbarsListJob .selected-block').removeClass('selected-block');
+      $('#navbarsListJob .visually-hidden').removeClass('visually-hidden');
+      $('#navbarsListJobPack .selected-block').removeClass('selected-block');
+      $('#navbarsListJobPack .visually-hidden').removeClass('visually-hidden');
 
-          const selectedInfo = document.getElementById('selected-info');
-          selectedInfo.textContent = '';
+      const selectedInfo = document.getElementById('selected-info');
+      selectedInfo.textContent = '';
 
-          if (searchText.length >= 3) {
-              var firstMatch = null;
-              let selected = 0;
-              $('#navbarsListJob').children().each(function () {
-                  var textContent = $(this).text().toLowerCase().trim();
+      if (searchText.length >= 3) {
+          var firstMatch = null;
+          let selected = 0;
+          $('#navbarsListJob, #navbarsListJobPack').children().each(function () {
+              var textContent = $(this).text().toLowerCase().trim();
 
-                  if (textContent) {
-                      if (textContent.includes(searchText)) {
-                          $(this).addClass('selected-block');
-                          selected++;
-                          if (!firstMatch) {
-                              firstMatch = $(this);
-                          }
-                      } else {
-                          $(this).addClass('visually-hidden');
+              if (textContent) {
+                  if (textContent.includes(searchText)) {
+                      $(this).addClass('selected-block');
+                      selected++;
+                      if (!firstMatch) {
+                          firstMatch = $(this);
                       }
                   } else {
                       $(this).addClass('visually-hidden');
                   }
-              });
-
-              if (firstMatch) {
-                  $('html, body').animate({
-                      scrollTop: 0
-                  }, 500);
-              }
-              if (selected > 0) {
-                  selectedInfo.textContent = `${selected} records found`;
               } else {
-                  selectedInfo.textContent = 'no records found';
+                  $(this).addClass('visually-hidden');
               }
-          }
+          });
 
-      });
+          if (firstMatch) {
+              $('html, body').animate({
+                  scrollTop: 0
+              }, 500);
+          }
+          if (selected > 0) {
+              selectedInfo.textContent = `${selected} records found`;
+          } else {
+              selectedInfo.textContent = 'no records found';
+          }
+          updateSelectedCount();
+      }
+      else{
+        selectedInfo.textContent = 'Enter at least 3 letters to Search';
+      }
+
+      // Dynamically update the count of selected blocks based on visibility
+
+  });
+
+
 
     $(".accordion-button a").click(function () {
       if (!$(this).prop("disabled") && !$(this).hasClass('begin-certification')) {
@@ -2593,6 +2620,9 @@ jQuery(document).ready(function ($) {
 
             $(".form-applied .show-main").removeClass("visually-hidden");
             $(".form-applied .show-pack").addClass("visually-hidden");
+            setTimeout(function () {
+              updateSelectedCount();
+            }, 500);
 
             if ($(window).width() < 768) {
               $("#map .navbar-toggler.button-open").trigger("click");
